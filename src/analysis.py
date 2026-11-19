@@ -127,6 +127,24 @@ cat["Share_%"] = (cat["Revenue"] / cat["Revenue"].sum() * 100).round(1)
 cat["Revenue"] = cat["Revenue"].round(2)
 show("13. CATEGORY SUMMARY", cat)
 
+# ---------- 13.1 Is Category a product attribute? ----------
+check = pd.DataFrame({
+    "distinct_categories": df.groupby("Product")["Category"].nunique(),
+    "categories_seen": df.groupby("Product")["Category"].agg(lambda s: ", ".join(sorted(s.unique()))),
+    "distinct_prices": df.groupby("Product")["Unit_Price"].nunique(),
+    "min_price": df.groupby("Product")["Unit_Price"].min(),
+    "max_price": df.groupby("Product")["Unit_Price"].max(),
+})
+show("13.1 CATEGORY/PRODUCT CONSISTENCY CHECK", check)
+inconsistent = int(df.groupby("Product")["Category"].nunique().gt(1).sum())
+show("13.2 INTERPRETATION",
+     f"products mapped to more than one category: {inconsistent} of {df['Product'].nunique()}\n"
+     "=> Category is a transaction-level label, not a fixed product attribute.\n"
+     "   Category shares are valid for revenue reporting, but must not be read as\n"
+     "   'this product belongs to this category'.\n"
+     f"price spread per product: {df['Unit_Price'].min():,} to {df['Unit_Price'].max():,}\n"
+     "=> price positioning per product cannot be inferred from this synthetic dataset.")
+
 # ---------- 14. NumPy statistics ----------
 rev = df["Revenue"].to_numpy()
 show("14. NUMPY STATISTICS (Revenue)",

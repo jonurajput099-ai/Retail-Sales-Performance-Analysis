@@ -204,6 +204,36 @@ cat["Avg_Order_Value"] = (cat["Revenue"] / cat["Orders"]).round(2)
 cat.round(2)
 """)
 
+md(r"""
+### 13.1 Data-quality check: is `Category` a product attribute?
+
+Before drawing conclusions from the category table, the analyst must confirm that each product
+belongs to exactly one category. If a product appears under both categories, `Category` is only a
+**transaction-level label**, and category results describe *where revenue was booked*, not the
+product line itself.
+""")
+code(r"""
+check = pd.DataFrame({
+    "distinct_categories": df.groupby("Product")["Category"].nunique(),
+    "categories_seen": df.groupby("Product")["Category"].agg(lambda s: ", ".join(sorted(s.unique()))),
+    "distinct_prices": df.groupby("Product")["Unit_Price"].nunique(),
+    "min_price": df.groupby("Product")["Unit_Price"].min(),
+    "max_price": df.groupby("Product")["Unit_Price"].max(),
+})
+check
+""")
+code(r"""
+inconsistent = df.groupby("Product")["Category"].nunique().gt(1).sum()
+print("products mapped to more than one category:", inconsistent, "of", df["Product"].nunique())
+if inconsistent:
+    print("=> Category is a transaction label, not a fixed product attribute.")
+    print("   Category shares are valid for revenue reporting, but must NOT be read as")
+    print("   'this product line belongs to this category'.")
+print("\nprice spread per product: every product sells between",
+      f"{df['Unit_Price'].min():,} and {df['Unit_Price'].max():,}",
+      "=> price positioning per product cannot be inferred from this synthetic dataset.")
+""")
+
 md("## 14. NumPy statistics on order revenue")
 code(r"""
 rev = df["Revenue"].to_numpy()
@@ -262,6 +292,10 @@ md(r"""
 - The dataset is synthetic and covers ~17 months; seasonality conclusions should be re-validated
   with more history.
 - Missing `City` values were imputed (12 rows), which slightly smooths city-level results.
+- `Category` is **not** a fixed product attribute in this dataset: all six products appear under
+  both Accessories and Electronics, and every product sells across the full price range
+  (₹499–₹45,999). Category shares are therefore valid for revenue reporting, but must not be read
+  as product-line membership or price positioning.
 - Correlation between variables is not causal; recommendations are directional, not guaranteed.
 """)
 

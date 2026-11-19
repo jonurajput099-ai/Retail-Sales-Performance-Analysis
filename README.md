@@ -57,6 +57,7 @@ Every number in the notebook is **computed from the dataset**, never typed in ma
 | `Order_Date` as text | All rows | Converted with `pd.to_datetime(errors="coerce")`; `Month`, `Month_Name`, `Weekday` extracted. |
 | `Revenue` trustworthiness | All rows | Recalculated as `Quantity × Unit_Price`; **maximum difference = 0** → supplied column validated. |
 | Extreme order values | 32 orders | Flagged with the 1.5 × IQR rule (upper bound ₹ 93,897) and **retained** — plausible bulk orders, not data errors. Their revenue share is reported explicitly. |
+| `Category` not tied to `Product` | All 6 products | Every product appears under **both** Accessories and Electronics, and each product sells across the full ₹499–₹45,999 range. `Category` is therefore treated as a **transaction-level label**: its revenue shares are reported, but no product-line or price-positioning claim is made (verified in notebook §13.1). |
 
 ---
 
@@ -157,6 +158,7 @@ python src/build_srs.py        # rebuilds the SRS document
 ## Assumptions & limitations
 
 - The dataset is **synthetic** — absolute revenue does not represent a real company.
+- `Category` is not a fixed product attribute: every product appears under both Accessories and Electronics, and every product spans the full price range. Category revenue shares are reported as transaction labels only.
 - Imputing 12 city values slightly smooths city-level results (documented, not hidden).
 - ~17 months of history: seasonality conclusions should be re-validated with more data.
 - Analysis is **descriptive**; no causal claim is made between payment mode, city, product and revenue.

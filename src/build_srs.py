@@ -432,6 +432,11 @@ add_table(
         ["Potential extreme values", "32 orders above the IQR upper bound",
          "Flagged and quantified (41.5% of total revenue); retained because they are plausible "
          "bulk/high-value orders, not data-entry errors."],
+        ["Category not tied to Product", "All 6 products appear in both categories",
+         "Detected and documented. Each product (Headphones, Keyboard, Laptop, Monitor, Mouse, Webcam) "
+         "is recorded under both Accessories and Electronics, and every product sells across the full "
+         "₹499–₹45,999 price range. Category is therefore treated as a transaction-level label: its "
+         "revenue shares are reported, but no product-line or price-positioning claim is made."],
     ],
     widths=[3.6, 3.6, 8.8],
     font_size=8.5,
@@ -603,6 +608,10 @@ bullet(doc, "The dataset spans January 2025 to May 2026 and is treated as a repr
 
 heading(doc, "10.2 Constraints and Limitations", 2)
 bullet(doc, "The dataset is synthetic; absolute revenue figures do not represent a real company.")
+bullet(doc, "`Category` is not a fixed product attribute in this dataset — every product appears under both "
+            "Accessories and Electronics, and every product sells across the full price range. Category "
+            "revenue shares are reported as transaction labels only; no product-line or price-positioning "
+            "conclusion is drawn from them.")
 bullet(doc, "Imputing 12 city values slightly smooths city-level results and is documented rather than hidden.")
 bullet(doc, "Only about 17 months of history are available, so seasonality conclusions (for example the June–July dip) should be re-validated with more data.")
 bullet(doc, "Outliers were retained, not removed. Their 41.5% revenue share is reported explicitly so the reader can judge the impact.")

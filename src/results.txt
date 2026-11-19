@@ -191,6 +191,28 @@ Accessories     240  7492779  721     53.7
 Electronics     260  6461341  759     46.3
 
 ========================================================================
+13.1 CATEGORY/PRODUCT CONSISTENCY CHECK
+========================================================================
+            distinct_categories           categories_seen  distinct_prices  min_price  max_price
+Product                                                                                         
+Headphones                    2  Accessories, Electronics                6        499      45999
+Keyboard                      2  Accessories, Electronics                6        499      45999
+Laptop                        2  Accessories, Electronics                6        499      45999
+Monitor                       2  Accessories, Electronics                6        499      45999
+Mouse                         2  Accessories, Electronics                6        499      45999
+Webcam                        2  Accessories, Electronics                6        499      45999
+
+========================================================================
+13.2 INTERPRETATION
+========================================================================
+products mapped to more than one category: 6 of 6
+=> Category is a transaction-level label, not a fixed product attribute.
+   Category shares are valid for revenue reporting, but must not be read as
+   'this product belongs to this category'.
+price spread per product: 499 to 45,999
+=> price positioning per product cannot be inferred from this synthetic dataset.
+
+========================================================================
 14. NUMPY STATISTICS (Revenue)
 ========================================================================
 mean   = 27,908.24
