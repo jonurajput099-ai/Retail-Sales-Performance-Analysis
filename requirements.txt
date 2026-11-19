@@ -1,0 +1,16 @@
+# Retail Sales Performance Analysis - dependencies
+# Python 3.10+ required (developed on 3.13)
+
+pandas>=2.0
+numpy>=1.24
+
+# Only needed to rebuild the notebook programmatically
+nbformat>=5.9
+nbclient>=0.8
+ipykernel>=6.25
+
+# Only needed to rebuild the SRS document
+python-docx>=1.1
+
+# Optional: interactive notebook UI
+jupyter>=1.0
