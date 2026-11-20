@@ -1,6 +1,8 @@
 """
 Retail Sales Performance Analysis
 Project 1 - Python, NumPy & Pandas
+
+Author : Khemchand Singh
 """
 import numpy as np
 import pandas as pd

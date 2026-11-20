@@ -128,7 +128,7 @@ def add_page_number_footer(section):
     p = footer.paragraphs[0]
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
-    run = p.add_run("Retail Sales Performance Analysis  |  Page ")
+    run = p.add_run("Khemchand Singh  |  Retail Sales Performance Analysis  |  Page ")
     run.font.size = Pt(8)
     run.font.color.rgb = GREY
 
@@ -240,10 +240,10 @@ add_table(
         ["Dataset", "01_retail_sales.csv (502 records, 10 columns)"],
         ["Primary tools", "Python 3.13, NumPy, Pandas, Jupyter Notebook"],
         ["Document version", "1.0"],
-        ["Prepared by", "ami2321"],
+        ["Prepared by", "Khemchand Singh"],
         ["Course", "Five-Day Engineering Student Training — First Year, First Semester"],
         ["Date of submission", date.today().strftime("%d %B %Y")],
-        ["Repository", "github.com/ami2321"],
+        ["Repository", "github.com/jonurajput099-ai/Retail-Sales-Performance-Analysis"],
     ],
     widths=[5.0, 11.0],
     header_fill="1F4E79",
@@ -252,6 +252,13 @@ add_table(
 )
 
 para(doc, "", space_after=10)
+p = doc.add_paragraph()
+p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+p.paragraph_format.space_after = Pt(10)
+r = p.add_run("Prepared by:  KHEMCHAND SINGH")
+r.bold = True
+r.font.size = Pt(13)
+r.font.color.rgb = ACCENT
 p = doc.add_paragraph()
 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
 r = p.add_run("This document defines the problem, objectives, scope, dataset, functional "

@@ -15,7 +15,7 @@ md(r"""
 
 | | |
 |---|---|
-| **Student** | ami2321 |
+| **Student** | Khemchand Singh |
 | **Dataset** | `data/retail_sales.csv` (502 rows, 10 columns) |
 | **Tools** | Python 3.13, NumPy, Pandas |
 | **Industry** | Retail / E-commerce |

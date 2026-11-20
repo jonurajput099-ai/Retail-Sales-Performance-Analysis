@@ -3,6 +3,8 @@
 **Project 1 — Python, NumPy & Pandas (Individual Industry Project)**
 Industry: Retail / E-commerce · Dataset: `01_retail_sales.csv` (502 records × 10 columns)
 
+**Prepared by:** Khemchand Singh
+
 An end-to-end, reproducible analysis of a retail transaction export: cleaning the raw data,
 validating revenue, and turning it into evidence-based commercial insight across products,
 cities, customers, payment modes and time.
@@ -179,6 +181,6 @@ python src/build_srs.py        # rebuilds the SRS document
 
 ## Author
 
-**ami2321** — Five-Day Engineering Student Training, First Year / First Semester.
+**Khemchand Singh** — Five-Day Engineering Student Training, First Year / First Semester.
 
-Submitted with: SRS document (DOCX), executed notebook, and this GitHub repository.
+Submitted with: SRS document (DOCX + PDF), executed notebook, and this GitHub repository.
