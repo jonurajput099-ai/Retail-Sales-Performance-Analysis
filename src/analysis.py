@@ -1,3 +1,8 @@
+# NAME = KHEMCHAND SINGH 
+# ADMISSION NO = 2026B01010457
+#  https://github.com/jonurajput099-ai/Retail-Sales-Performance-Analysis.git
+
+
 """
 Retail Sales Performance Analysis
 Project 1 - Python, NumPy & Pandas
